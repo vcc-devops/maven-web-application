@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Flipcart Releases Nexus Repository</name>
-	      <url>http://172.31.12.100/vinaydevops/repository/Flipcart-release/</url>
+	      <url>http://172.31.12.100:8081/vinaydevops/repository/Flipcart-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Flipcart Snapshot Nexus Repository </name>
-	      <url>http://172.31.12.100/vinaydevops/repository/Flipcart-snapshot/</url>
+	      <url>http://172.31.12.100:8081/vinaydevops/repository/Flipcart-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
