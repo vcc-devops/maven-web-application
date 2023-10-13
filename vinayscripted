@@ -1,0 +1,27 @@
+node{
+    
+def mavenHome = tool name:"maven3.9.4"
+
+
+stage('git checkout'){
+git branch: 'progress', credentialsId: '63950327-b398-4e8c-9ff8-ee34f3aae2f5', url: 'https://github.com/vcc-devops/maven-web-application.git'
+}
+
+stage('buildpackage'){
+sh "${mavenHome}/bin/mvn clean package"
+}
+
+stage('buildSonarqube'){
+sh "${mavenHome}/bin/mvn clean sonar:sonar"
+}
+
+stage('buildnexus'){
+sh "${mavenHome}/bin/mvn clean deploy"
+}
+stage('deploytotomcat'){
+sshagent(['d7377fb0-39e9-4e00-890e-0b619d098383']) {
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.34.8:/opt/apache-tomcat-9.0.80/webapps/"
+}
+
+
+}// node closing
